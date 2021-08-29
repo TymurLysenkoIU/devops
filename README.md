@@ -39,6 +39,48 @@ One can run the tests locally in docker via the following command:
 docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up test 
 ```
 
+### Static analysis
+
+To run static analysis (`mypy` and `pylama`) on the whole project in docker use the following command:
+
+```shell
+./scripts/code/static_analysis.sh
+```
+
+#### mypy
+
+`mypy` can be configured in `mypy.ini` file.
+
+Run `mypy` on the whole project:
+
+```shell
+docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up mypy
+```
+
+#### Pylama
+
+`pylama` config is located in `pylama.ini`.
+
+Run `pylama` on the whole project:
+
+```shell
+docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up pylama
+```
+
+#### Formatting
+
+`yapf` is used to format the python code. The style is located in `.style.yapf`
+
+Format code for the whole project:
+
+```shell
+# Directly in docker
+docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up format
+
+# Or via script (actually runs the above command)
+./scripts/code/format.sh
+```
+
 ## Automation scripts
 
 There is `scripts/` folder that contains useful scripts to automate routine development tasks:
@@ -46,6 +88,8 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
 - `docker/` - scripts to manipulate `docker`-related stuff
   - `prepare-multiarch-build.sh` - prepares the local environment for multi-architecture builds. Needs to be run once and before running `build-bultiarch.sh` for the first time.
   - `build-bultiarch.sh` - builds the specified Dockerfile for multiple architectures and pushes the built image to registry
+- `code/`
+  - [ ] TODO
 
 ## Releasing
 

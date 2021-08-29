@@ -1,0 +1,5 @@
+pytest==6.2.4
+mypy==0.910
+python-gflags==3.1.2
+pylama==7.7.1
+yapf==0.31.0

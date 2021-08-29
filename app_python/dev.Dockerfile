@@ -2,9 +2,10 @@ FROM python:3.9.6
 
 VOLUME /app
 WORKDIR /app
+SHELL ["/bin/bash", "-c"]
 
-COPY ./requirements.txt /tmp/requirements.txt
-RUN pip install -r /tmp/requirements.txt
+COPY ./requirements*.txt /tmp/
+RUN pip install -r /tmp/requirements.txt -r /tmp/requirements.dev.txt
 
 ENV FLASK_APP app
 ENV FLASK_ENV development

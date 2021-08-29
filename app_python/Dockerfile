@@ -1,7 +1,9 @@
 FROM python:3.9.6
 
-COPY . /app
+COPY ./app /app
+COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
+SHELL ["/bin/bash", "-c"]
 
 RUN pip install -r requirements.txt
 
