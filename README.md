@@ -15,19 +15,25 @@ After running the command the go to the http://localhost:5000/ to see the applic
 
 # Development
 
+The project source code is located in `app_python/` folder. 
+
 ## Running the project
 
 ### Docker
 
-- [ ] TODO
+`docker-compose.dev.yml` contains configuration to run the project locally for development purposes and enables to debug it. It can also be used as a python interpreter and corresponding dependencies environment by IDE-s.
+
+It can also be run in terminal via:
 
 ```shell
 docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up
 ```
 
-## Testing
+### Testing
 
-- [ ] TODO
+All tests are located in `tests` python package. You can find out more in the `Testing` section of [PYTHON.md](app_python/PYTHON.md).
+
+One can run the tests locally in docker via the following command:
 
 ```shell
 docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up test 
