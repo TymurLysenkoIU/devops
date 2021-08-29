@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    image: devops_lab1-2_dev
+    container_name: devops_lab1-2_dev
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+    ports:
+      - "5000:80"
+    volumes:
+      - ./:/app
+
+  test:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    image: devops_lab1-2_dev
+    container_name: devops_lab1-2_dev-test
+    environment:
+      FLASK_ENV: development
+      FLASK_DEBUG: 1
+    volumes:
+      - ./:/app
+      - ./tests:/app/tests
+    entrypoint: pytest

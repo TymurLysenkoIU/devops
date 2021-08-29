@@ -11,3 +11,9 @@ Applications need dependencies to be present before running. The easiest way to 
 When a new version is issued and its version is not specified explicitly it is not possible to get reproducible build anymore, because the new version might be incompatible in some way with the actual version of the package used to write the application.
 
 ### (Bonus) Use strongly typed languages for real applications (i.e., preferably not python) :)
+
+## Testing
+
+### Good practices
+
+- [ ] TODO: describe

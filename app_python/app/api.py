@@ -1,10 +1,10 @@
-from flask import Flask
-
+from flask import Blueprint
 import datetime
 
-app = Flask(__name__)
+bp = Blueprint("api", __name__)
 
-@app.route("/")
-def current_time():
+
+@bp.route("/")
+def current_time() -> str:
     now: datetime.datetime = datetime.datetime.now(datetime.timezone.utc)
     return now.isoformat()

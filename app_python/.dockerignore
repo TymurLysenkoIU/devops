@@ -1,4 +1,6 @@
 __pycache__
+.pytest_cache
 *Dockerfile
-docker-compose.yml
+docker-compose*.yml
 *.md
+tests/*
