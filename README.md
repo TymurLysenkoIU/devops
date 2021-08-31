@@ -1,3 +1,7 @@
+![image-build-status](https://github.com/sitiritis/devops/actions/workflows/build-image/badge.svg)
+
+[![dockerhub-badge](https://img.shields.io/badge/Dockerhub-black?logo=docker)](https://hub.docker.com/r/sitiritis/iu-devops)
+
 This is the project for DevOps course conducted at Innopolis University 2021 fall semester.
 
 # Quickstart: Running the project
@@ -92,9 +96,22 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
   - `format.sh` - runs `yapf` to format source code (see the [Formatting section](#formatting))
   - `static_analysis.sh` - runs `pylama` linters and `mypy` type checker (see [mypy](#mypy) and [pylama](#pylama) sections) 
 
-## CI
+## CI/CD
 
-- [ ] TODO: describe CI process
+### Pull requests
+
+When pull request is sent, on each push to the branch the CI process will run to ensure the code quality, mainly the following checks will run:
+
+- `mypy` type checker (see [`mypy` section](#mypy))
+- `pylama` linters (see [`Pylama` section](#pylama)
+- tests (see [`Testing` section](#testing)
+- code formatting (see [`Formatting` section](#formatting))
+
+For more details see `ci` GitHub workflow.
+
+### Merge to master
+
+Once a pull request is merged to master, the CD workflow (`build-image`) will tag the last commit with the bumped version and the image will be built and pushed to registry for the 2 platforms `linux/amd64` and `linux/arm64`. 
 
 ## Releasing
 
@@ -115,10 +132,3 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
    ```shell
    ./scripts/docker/build-multiarch.sh sitiritis/devops_lab_1-2:latest ./app_python
    ```
-
-
-# Dockerhub
-
-- [ ] TODO: change to badge
-
-[The image for the labs is available on dockerhub](https://hub.docker.com/r/sitiritis/devops_lab_1-2)
