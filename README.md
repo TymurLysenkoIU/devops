@@ -36,7 +36,7 @@ All tests are located in `tests` python package. You can find out more in the `T
 One can run the tests locally in docker via the following command:
 
 ```shell
-docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up test 
+docker-compose -p tymur-lysenko-devops -f docker-compose.dev.yml up test
 ```
 
 ### Static analysis
@@ -88,8 +88,13 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
 - `docker/` - scripts to manipulate `docker`-related stuff
   - `prepare-multiarch-build.sh` - prepares the local environment for multi-architecture builds. Needs to be run once and before running `build-bultiarch.sh` for the first time.
   - `build-bultiarch.sh` - builds the specified Dockerfile for multiple architectures and pushes the built image to registry
-- `code/`
-  - [ ] TODO
+- `code/` - source code related scripts such as code formatting and static analysis 
+  - `format.sh` - runs `yapf` to format source code (see the [Formatting section](#formatting))
+  - `static_analysis.sh` - runs `pylama` linters and `mypy` type checker (see [mypy](#mypy) and [pylama](#pylama) sections) 
+
+## CI
+
+- [ ] TODO: describe CI process
 
 ## Releasing
 
