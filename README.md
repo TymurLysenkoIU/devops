@@ -1,4 +1,4 @@
-![image-build-status](https://github.com/sitiritis/devops/actions/workflows/build-image/badge.svg)
+[![Build docker image and push to registry](https://github.com/TymurLysenkoIU/devops/actions/workflows/build-image.yml/badge.svg)](https://github.com/TymurLysenkoIU/devops/actions/workflows/build-image.yml)
 
 [![dockerhub-badge](https://img.shields.io/badge/Dockerhub-black?logo=docker)](https://hub.docker.com/r/sitiritis/iu-devops)
 
@@ -95,6 +95,7 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
 - `code/` - source code related scripts such as code formatting and static analysis 
   - `format.sh` - runs `yapf` to format source code (see the [Formatting section](#formatting))
   - `static_analysis.sh` - runs `pylama` linters and `mypy` type checker (see [mypy](#mypy) and [pylama](#pylama) sections) 
+  - `test.sh` - runs tests (see [Testing](#testing) section)
 
 ## CI/CD
 

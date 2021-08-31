@@ -1,6 +1,8 @@
 name: Build docker image and push to registry
 on:
   push:
+    paths:
+      - app_python/**
     branches:
       - 'master'
 jobs:
