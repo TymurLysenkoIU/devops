@@ -1,0 +1,57 @@
+name: CI
+on:
+  push:
+    branches-ignore:
+      - 'master'
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: >
+          docker-compose
+          -f ./app_python/docker-compose.dev.yml
+          up
+          test
+  mypy:
+    name: Type check with mypy
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run mypy
+        run: >
+          docker-compose
+          -f ./app_python/docker-compose.dev.yml
+          up
+          mypy
+  pylama:
+    name: Run pylama linters
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run pylama
+        run: >
+          docker-compose
+          -f ./app_python/docker-compose.dev.yml
+          up
+          pylama
+  format:
+    name: Run pylama linters
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Run pylama
+        run: >
+          docker-compose
+          -f ./app_python/docker-compose.dev.yml
+          run
+          --entrypoint
+          yapf --recursive --parallel --verbose --in-place --diff **/*.py
+          --
+          format

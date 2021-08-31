@@ -1,0 +1,39 @@
+version: "3.8"
+
+x-base-app: &base-app
+  build:
+    context: .
+    dockerfile: dev.Dockerfile
+  image: devops_lab1-2_dev
+  environment:
+    FLASK_ENV: development
+    FLASK_DEBUG: 1
+  volumes:
+    - ./:/app
+
+services:
+  app:
+    <<: *base-app
+    container_name: devops_lab1-2_dev
+    ports:
+      - "5000:80"
+
+  test:
+    <<: *base-app
+    container_name: devops_lab1-2_dev-test
+    entrypoint: pytest
+
+  mypy:
+    <<: *base-app
+    container_name: devops_lab1-2_dev-mypy
+    entrypoint: mypy
+
+  pylama:
+    <<: *base-app
+    container_name: devops_lab1-2_dev-pylama
+    entrypoint: pylama
+
+  format:
+    <<: *base-app
+    container_name: devops_lab1-2_dev-format
+    entrypoint: ./format-entrypoint.sh
