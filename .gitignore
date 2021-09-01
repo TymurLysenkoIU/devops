@@ -16,3 +16,8 @@ __pycache__
 
 jenkins/*
 !jenkins/docker-compose.yml
+
+# Terraform
+
+terraform/.terraform*
+terraform/*.tfstate*

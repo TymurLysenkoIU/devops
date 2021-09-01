@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  az:
+    image: mcr.microsoft.com/azure-cli:2.9.1
+    working_dir: /workdir
+    volumes:
+      - ./az-workdir:/workdir

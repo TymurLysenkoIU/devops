@@ -104,8 +104,8 @@ There is `scripts/` folder that contains useful scripts to automate routine deve
 When pull request is sent, on each push to the branch the CI process will run to ensure the code quality, mainly the following checks will run:
 
 - `mypy` type checker (see [`mypy` section](#mypy))
-- `pylama` linters (see [`Pylama` section](#pylama)
-- tests (see [`Testing` section](#testing)
+- `pylama` linters (see [`Pylama` section](#pylama))
+- tests (see [`Testing` section](#testing))
 - code formatting (see [`Formatting` section](#formatting))
 
 For more details see `ci` GitHub workflow.
@@ -139,4 +139,43 @@ Once a pull request is merged to master, the CD workflow (`build-image`) will ta
 ```shell
 cd jenkins
 docker-compose -p tymur-lysenko-devops up
+```
+
+# Terraform
+
+## Login to Azure and create a service principal
+
+1. Start the shell with azure cli tool
+    ```shell
+    cd terraform
+    docker-compose run az bash
+    ```
+2. Login to azure (save the output of the command)
+    ```shell
+    az login
+    ```
+3. Create service principal (save the output of the command)
+    ```shell
+    az ad sp create-for-rbac --name iu-devops
+    ```
+4. Put the output of the commands to the `main.tf`:
+    ```shell
+    # Configure the Microsoft Azure Provider
+    provider "azurerm" {
+      features {}
+    
+      # Set valid values
+      subscription_id   = "<azure_subscription_id>"
+      tenant_id         = "<azure_subscription_tenant_id>"
+      client_id         = "<service_principal_appid>"
+      client_secret     = "<service_principal_password>"
+    }
+    ```
+
+## Deploy the application container
+
+Ensure that you have [logged in](#login-to-azure-and-create-a-service-principal).
+
+```shell
+terraform apply
 ```
