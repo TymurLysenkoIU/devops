@@ -1,6 +1,6 @@
 FROM python:3.9.6
 
-COPY ./app /app
+COPY ./app /app/app
 COPY ./requirements.txt /app/requirements.txt
 WORKDIR /app
 SHELL ["/bin/bash", "-c"]
