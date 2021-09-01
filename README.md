@@ -133,3 +133,10 @@ Once a pull request is merged to master, the CD workflow (`build-image`) will ta
    ```shell
    ./scripts/docker/build-multiarch.sh sitiritis/devops_lab_1-2:latest ./app_python
    ```
+
+# Jenkins
+
+```shell
+cd jenkins
+docker-compose -p tymur-lysenko-devops up
+```

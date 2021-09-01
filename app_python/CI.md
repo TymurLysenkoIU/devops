@@ -11,5 +11,3 @@
 ## Jenkins
 
 ### Best practices
-
-- [ ] TODO

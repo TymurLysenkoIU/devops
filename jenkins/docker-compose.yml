@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  j:
+    image: jenkins/jenkins:2.309-jdk11
+    container_name: tymur-lysenko-iu-devops-jenkins
+    environment: {}
+    user: "0"
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
