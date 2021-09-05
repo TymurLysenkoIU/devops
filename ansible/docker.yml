@@ -1,0 +1,6 @@
+---
+- name: "Setup docker"
+  hosts: app
+  gather_facts: true
+  roles:
+    - role: docker

@@ -1,0 +1,25 @@
+---
+- name: Install docker for Ubuntu
+  import_tasks: docker_ubuntu.yml
+  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Debian'
+
+- name: Install docker-compose
+  import_tasks: docker_compose.yml
+
+- name: Create group docker
+  group:
+    name: docker
+    state: present
+  become: true
+
+- name: Add user to docker group
+  user:
+    name: "{{ ansible_user }}"
+    groups:
+      - docker
+    append: yes
+    state: present
+  become: true
+  when:
+    - ansible_user is defined
+    - ansible_user != 'root'
