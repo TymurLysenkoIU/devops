@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  app:
+    image: sitiritis/iu-devops:latest
+    container_name: tymur-lysenko-iu-devops
+    environment:
+      FLASK_ENV: production
+      FLASK_DEBUG: 0
+    ports:
+      - "80:80"

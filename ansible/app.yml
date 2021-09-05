@@ -1,0 +1,6 @@
+---
+- name: "Deploy the app"
+  hosts: app
+  gather_facts: true
+  roles:
+    - role: app_python
