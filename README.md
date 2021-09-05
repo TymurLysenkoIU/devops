@@ -184,11 +184,11 @@ terraform apply
 
 Everything related to ansible infrastructure management is located under the `ansible/` directory.
 
-## How to run the `docker.yml` playbook
+## Prepare to run the roles (required to do before running anything via ansible)
 
 0. `cd ansible`
-
-1. Change host and user in inventory to the desired one (`inventory/hosts.yml`)
+1. Ensure that you have SSH access to the target host
+2. Change host and user in inventory to the desired one (`inventory/hosts.yml`)
 
    ```yaml
    all:
@@ -197,14 +197,38 @@ Everything related to ansible infrastructure management is located under the `an
         ansible_host: 127.0.0.1  # Set your host here
         ansible_user: root  # Set user to run playbooks under here
    ```
-   
-2. Ensure that you have SSH access to the target host
-3. Run the playbook to install docker and docker compose on the host 
-   ```shell
-   ansible-playbook docker.yml
-   ```
 
-## `docker` role
+## Deploy the app on the target machine
+
+```shell
+ansible-playbook app.yml
+```
+
+## Deploy docker on the target machine
+
+```shell
+ansible-playbook docker.yml
+```
+
+## Roles description
+
+### `app_python`
+
+Starts the app in docker container on the target machine.
+
+#### Variables
+
+- `docker_compose_dir` - path, where docker-compose file for app deployment is being copied and ran.
+
+#### Requirements
+
+Requires facts to be gathered.
+
+```yaml
+gather_facts: true
+```
+
+### `docker`
 
 Installs `docker` and `docker-compose`, creates the `docker` group and, if the `anisble_user` user is not `root` adds the user to the group (so that docker commands can be ran without `sudo`).
 
@@ -214,7 +238,7 @@ The supported distributions are:
 - Debian
 
 
-### Requirements
+#### Requirements
 
 Requires facts to be gathered.
 
