@@ -20,12 +20,11 @@ def create_app(test_conf: Optional[AppConfig] = None) -> Flask:
     else:
         app.config.update(asdict(test_conf))  # type: ignore[misc]
 
-    if not app.testing:
-        if (
-            (log_file_path := app.config.get('LOG_FILE_PATH'))
-        ):
+    if not app.testing:  # type: ignore[misc]
+        if log_file_path := app.config.get(
+                'LOG_FILE_PATH'):  # type: ignore[misc]
             logging.basicConfig(
-                filename=log_file_path,
+                filename=log_file_path,  # type: ignore[misc]
                 level=logging.DEBUG,
             )
 
