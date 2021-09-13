@@ -9,4 +9,6 @@ RUN pip install -r requirements.txt
 
 ENV FLASK_APP app
 
+RUN mkdir -p /var/log/sitirits-iu-devops
+
 ENTRYPOINT flask run --host=0.0.0.0 --port=80
