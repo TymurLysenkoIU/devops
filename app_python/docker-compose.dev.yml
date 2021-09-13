@@ -4,7 +4,7 @@ x-base-app: &base-app
   build:
     context: .
     dockerfile: dev.Dockerfile
-  image: devops_lab1-2_dev
+  image: sitiritis/iu-devops_dev
   environment:
     FLASK_ENV: development
     FLASK_DEBUG: 1
@@ -14,26 +14,26 @@ x-base-app: &base-app
 services:
   app:
     <<: *base-app
-    container_name: devops_lab1-2_dev
+    container_name: sitiritis_iu-devops_dev
     ports:
       - "5000:80"
 
   test:
     <<: *base-app
-    container_name: devops_lab1-2_dev-test
+    container_name: sitiritis_iu-devops_dev-test
     entrypoint: pytest
 
   mypy:
     <<: *base-app
-    container_name: devops_lab1-2_dev-mypy
+    container_name: sitiritis_iu-devops_dev-mypy
     entrypoint: mypy
 
   pylama:
     <<: *base-app
-    container_name: devops_lab1-2_dev-pylama
+    container_name: sitiritis_iu-devops_dev-pylama
     entrypoint: pylama
 
   format:
     <<: *base-app
-    container_name: devops_lab1-2_dev-format
+    container_name: sitiritis_iu-devops_dev-format
     entrypoint: ./format-entrypoint.sh

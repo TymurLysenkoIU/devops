@@ -1,6 +1,7 @@
 from flask import Flask
 from typing import Optional
 from dataclasses import asdict
+import logging
 
 from .AppConfig import AppConfig
 
@@ -15,9 +16,17 @@ def create_app(test_conf: Optional[AppConfig] = None) -> Flask:
     app = Flask(__name__)
 
     if test_conf is None:
-        pass  # for now no configuration for application is setup
+        app.config.from_pyfile('logging_conf.py')
     else:
         app.config.update(asdict(test_conf))  # type: ignore[misc]
+
+    if not app.testing:  # type: ignore[misc]
+        if log_file_path := app.config.get(
+                'LOG_FILE_PATH'):  # type: ignore[misc]
+            logging.basicConfig(
+                filename=log_file_path,  # type: ignore[misc]
+                level=logging.DEBUG,
+            )
 
     __register_blueprints__(app)
 
