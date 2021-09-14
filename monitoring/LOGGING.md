@@ -1,5 +1,7 @@
 # Logging
 
+## Loki
+
 1. 
    ```shell
    docker-compose up
@@ -16,3 +18,13 @@
 Exemplary output:
 
 ![grafana logs](./logs.png)
+
+## Prometheus
+
+### Prometheus scrape targets
+
+![Prometheus targets](./prom-targets.png)
+
+### Application dashboard with logs and metrics
+
+![Grafana app dashboard](./app-grafana-dashboard.png)

@@ -1,4 +1,6 @@
 from flask import Flask
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from prometheus_client import make_wsgi_app
 from typing import Optional
 from dataclasses import asdict
 import logging
@@ -27,6 +29,9 @@ def create_app(test_conf: Optional[AppConfig] = None) -> Flask:
                 filename=log_file_path,  # type: ignore[misc]
                 level=logging.DEBUG,
             )
+        app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
+            '/metrics': make_wsgi_app()
+        })
 
     __register_blueprints__(app)
 
