@@ -44,3 +44,24 @@ service/kubernetes                ClusterIP   10.96.0.1       <none>        443/
 service/sitiritis-iu-devops-app   ClusterIP   10.102.79.246   <none>        80/TCP    5m14s
 
 ```
+
+## Install helm chart
+
+1. ```shell
+   helm install sitiritis-iu-devops-app ./sitiritis-iu-devops-app 
+   ```
+2. ```shell
+   minikube service sitiritis-iu-devops-app
+   ```
+
+After this the output of `kubectl get pods,svc` looks like this:
+
+```
+NAME                                          READY   STATUS    RESTARTS   AGE
+pod/sitiritis-iu-devops-app-88f848cdc-q9gjn   1/1     Running   0          2m29s
+
+NAME                              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/kubernetes                ClusterIP   10.96.0.1       <none>        443/TCP   3h6m
+service/sitiritis-iu-devops-app   ClusterIP   10.109.175.34   <none>        80/TCP    2m29s
+
+```
