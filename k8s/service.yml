@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sitiritis-iu-devops-app
+spec:
+  selector:
+    app: sitiritis-iu-devops-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80

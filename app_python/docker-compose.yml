@@ -1,26 +1,26 @@
 version: "3.8"
 
 services:
-#  app:
-#    image: sitiritis/iu-devops:latest
-#    container_name: tymur-lysenko-iu-devops
-#    environment:
-#      FLASK_ENV: production
-#      FLASK_DEBUG: 0
-#    ports:
-#      - "5000:80"
-
-# Comment previous and uncomment this to build locally
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: tymur-lysenko-iu-devops-local
-    container_name: tymur-lysenko-iu-devops-local
+    image: sitiritis/iu-devops:latest
+    container_name: tymur-lysenko-iu-devops
     environment:
       FLASK_ENV: production
       FLASK_DEBUG: 0
-    volumes:
-      - ../monitoring/workdir/log:/var/log/sitirits-iu-devops
     ports:
       - "5000:80"
+
+# Comment previous and uncomment this to build locally
+#  app:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#    image: tymur-lysenko-iu-devops-local
+#    container_name: tymur-lysenko-iu-devops-local
+#    environment:
+#      FLASK_ENV: production
+#      FLASK_DEBUG: 0
+#    volumes:
+#      - ../monitoring/workdir/log:/var/log/sitirits-iu-devops
+#    ports:
+#      - "5000:80"
