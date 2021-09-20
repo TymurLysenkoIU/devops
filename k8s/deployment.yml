@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sitiritis-iu-devops-app
+  labels:
+    app: sitiritis-iu-devops-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sitiritis-iu-devops-app
+  template:
+    metadata:
+      labels:
+        app: sitiritis-iu-devops-app
+    spec:
+      containers:
+      - name: sitiritis-iu-devops-app
+        image: sitiritis/iu-devops:latest
+        ports:
+        - containerPort: 80
