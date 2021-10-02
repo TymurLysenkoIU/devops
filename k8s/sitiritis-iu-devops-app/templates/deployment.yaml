@@ -53,6 +53,14 @@ spec:
                 secretKeyRef:
                   name: sitiritis-iu-devops-lab-11
                   key: secret_key
+          volumeMounts:
+             - name: config-volume
+               mountPath: /app/config.json
+               subPath: config.json
+       volumes:
+         - name: config-volume
+           configMap:
+             name: sitiritid-iu-devops-app
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
