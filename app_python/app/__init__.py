@@ -1,6 +1,6 @@
 from flask import Flask
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
-from prometheus_client import make_wsgi_app
+from prometheus_client import make_wsgi_app  # type: ignore[import]
 from typing import Optional
 from dataclasses import asdict
 import logging
@@ -18,7 +18,7 @@ def create_app(test_conf: Optional[AppConfig] = None) -> Flask:
     app = Flask(__name__)
 
     if test_conf is None:
-        app.config.from_pyfile('logging_conf.py')
+        app.config.from_pyfile('conf.py')
     else:
         app.config.update(asdict(test_conf))  # type: ignore[misc]
 
@@ -29,9 +29,9 @@ def create_app(test_conf: Optional[AppConfig] = None) -> Flask:
                 filename=log_file_path,  # type: ignore[misc]
                 level=logging.DEBUG,
             )
-        app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
-            '/metrics': make_wsgi_app()
-        })
+        app.wsgi_app = DispatcherMiddleware(  # type: ignore[assignment]
+            app.wsgi_app,  # type: ignore[misc]
+            {'/metrics': make_wsgi_app()})  # type: ignore[misc]
 
     __register_blueprints__(app)
 
