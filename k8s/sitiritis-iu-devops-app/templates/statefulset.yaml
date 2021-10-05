@@ -58,6 +58,23 @@ spec:
           volumeMounts:
             - name: sitiritis-iu-volume
               mountPath: /app/data
+            - name: workdir
+              mountPath: /work-dir
+      initContainers:
+        - name: install
+          image: busybox
+          command:
+            - wget
+            - "-O"
+            - "/work-dir/index.html"
+            - http://info.cern.ch
+          volumeMounts:
+            - name: workdir
+              mountPath: "/work-dir"
+      dnsPolicy: Default
+      volumes:
+        - name: workdir
+          emptyDir: { }
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
