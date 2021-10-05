@@ -10,6 +10,7 @@ x-base-app: &base-app
     FLASK_DEBUG: 1
   volumes:
     - ./:/app
+    - data:/app/data
 
 services:
   app:
@@ -37,3 +38,6 @@ services:
     <<: *base-app
     container_name: sitiritis_iu-devops_dev-format
     entrypoint: ./format-entrypoint.sh
+
+volumes:
+  data:

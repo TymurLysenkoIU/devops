@@ -9,6 +9,7 @@ services:
       FLASK_DEBUG: 0
     volumes:
       - ../monitoring/workdir/log:/var/log/sitirits-iu-devops
+      - data:/app/data
     ports:
       - "5000:80"
 
@@ -24,5 +25,9 @@ services:
 #      FLASK_DEBUG: 0
 #    volumes:
 #      - ../monitoring/workdir/log:/var/log/sitirits-iu-devops
+#      - data:/app/data
 #    ports:
 #      - "5000:80"
+
+volumes:
+  data:
